@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		52C4D477259F36E00053964C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C4D475259F36E00053964C /* Main.storyboard */; };
 		52C4D479259F36E30053964C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52C4D478259F36E30053964C /* Assets.xcassets */; };
 		52C4D47C259F36E30053964C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C4D47A259F36E30053964C /* LaunchScreen.storyboard */; };
+		52C4D48C259F44800053964C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4D48B259F44800053964C /* Event.swift */; };
 		7CC286A48E8C868E9DF6C8BD /* Pods_Diary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A2FAF70DB9A6EC6A24F6FB /* Pods_Diary.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		52C4D478259F36E30053964C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52C4D47B259F36E30053964C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52C4D47D259F36E30053964C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52C4D48B259F44800053964C /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = SOURCE_ROOT; };
 		5DDAB84449C36C918CA77CC9 /* Pods-Diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.release.xcconfig"; path = "Target Support Files/Pods-Diary/Pods-Diary.release.xcconfig"; sourceTree = "<group>"; };
 		A0A2FAF70DB9A6EC6A24F6FB /* Pods_Diary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Diary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -48,7 +50,6 @@
 				49BCEFCBE7433607BDA01899 /* Pods-Diary.debug.xcconfig */,
 				5DDAB84449C36C918CA77CC9 /* Pods-Diary.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -73,6 +74,7 @@
 		52C4D46E259F36E00053964C /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				52C4D48B259F44800053964C /* Event.swift */,
 				52C4D46F259F36E00053964C /* AppDelegate.swift */,
 				52C4D471259F36E00053964C /* SceneDelegate.swift */,
 				52C4D473259F36E00053964C /* ViewController.swift */,
@@ -206,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52C4D48C259F44800053964C /* Event.swift in Sources */,
 				52C4D474259F36E00053964C /* ViewController.swift in Sources */,
 				52C4D470259F36E00053964C /* AppDelegate.swift in Sources */,
 				52C4D472259F36E00053964C /* SceneDelegate.swift in Sources */,
