@@ -20,6 +20,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     let titleLabel = UILabel(frame: CGRect(x: 0, y: 80, width: 180, height: 40))
     let contentLabel = UILabel(frame: CGRect(x: 5, y: 120, width: 400, height: 100))
     let selectedDateLabel = UILabel(frame: CGRect(x: 5, y: 0, width: 300, height: 100))
+    let addBtn = UIButton(frame: CGRect(x: width-80, y: height-90, width: 60, height: 60))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         view.addSubview(dateView)
         
         //下のとこ青くする
-        scheduleView.backgroundColor = UIColor.blue
+        scheduleView.backgroundColor = UIColor.systemBlue
         view.addSubview(scheduleView)
         
         //タイトルラベル
@@ -52,6 +53,14 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         selectedDateLabel.textColor = .white
         selectedDateLabel.font = UIFont.systemFont(ofSize: 40.0)
         scheduleView.addSubview(selectedDateLabel)
+        
+        //ボタン設置
+        addBtn.backgroundColor = UIColor(displayP3Red: 0/255, green: 100/250, blue: 255/255, alpha: 1)
+        addBtn.setTitle("+", for: UIControl.State())
+        addBtn.setTitleColor(.white, for: UIControl.State())
+        addBtn.layer.cornerRadius = 30.0
+        addBtn.addTarget(self, action: #selector(onClick), for: .touchUpInside)
+        view.addSubview(addBtn)
     }
     
     //祝日判定メソッド
@@ -117,6 +126,13 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         let d = String(format: "%02d", day)
         
         selectedDateLabel.text = "\(y)/\(m)/\(d)"
+    }
+    
+    //画面遷移(スケジュール登録画面)
+    @objc func onClick() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let SecoundController = storyboard.instantiateViewController(withIdentifier: "Insert")
+        present(SecoundController, animated: true, completion: nil)
     }
     
 }
