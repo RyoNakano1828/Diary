@@ -21,7 +21,7 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
     let contentLabel = UILabel(frame: CGRect(x: 5, y: 120, width: 400, height: 100))
     let selectedDateLabel = UILabel(frame: CGRect(x: 5, y: 0, width: 300, height: 100))
     let addBtn = UIButton(frame: CGRect(x: width-80, y: height-90, width: 60, height: 60))
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -49,7 +49,11 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         scheduleView.addSubview(contentLabel)
         
         //日付表示設定
-        selectedDateLabel.text = "07/04"
+        //今日の日付を表示する
+        let now = Date()
+        calendar(dateView, didSelect: now, at: .current)
+        dateView.select(now)
+        
         selectedDateLabel.textColor = .white
         selectedDateLabel.font = UIFont.systemFont(ofSize: 40.0)
         scheduleView.addSubview(selectedDateLabel)
@@ -61,6 +65,15 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         addBtn.layer.cornerRadius = 30.0
         addBtn.addTarget(self, action: #selector(onClick), for: .touchUpInside)
         view.addSubview(addBtn)
+        
+        getSchedule(date: selectedDateLabel.text!)
+    }
+    
+    //編集画面から戻ってきたときに編集内容を自動更新のはずだが呼ばれないなぁ
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        getSchedule(date: selectedDateLabel.text!)
     }
     
     //祝日判定メソッド
@@ -126,10 +139,29 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         let d = String(format: "%02d", day)
         
         selectedDateLabel.text = "\(y)/\(m)/\(d)"
+        
+        getSchedule(date: selectedDateLabel.text!)
+    }
+    
+    //スケジュール取得
+    func getSchedule(date: String) {
+        let realm = try! Realm()
+        var result = realm.objects(Event.self)
+        result = result.filter("date = '\(date)'")
+        if let event = result.last {
+            print(event.event)
+            contentLabel.text = event.event
+            contentLabel.textColor = .black
+        }else {
+            contentLabel.text = "スケジュールはありません"
+            contentLabel.textColor = .darkGray
+        }
     }
     
     //画面遷移(スケジュール登録画面)
     @objc func onClick() {
+        UserDefaults.standard.set(selectedDateLabel.text, forKey: "selectedDate")
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let SecoundController = storyboard.instantiateViewController(withIdentifier: "Insert")
         present(SecoundController, animated: true, completion: nil)
